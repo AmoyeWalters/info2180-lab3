@@ -4,7 +4,9 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentPlayer = 'X';
     const gameState = Array(9).fill(null); // Initialize the game state array
     const statusDiv = document.getElementById('status');
-    const newGameButton = document.getElementById('new-game'); // Select the New Game button
+    const newGameButton = document.getElementsByClassName('btn') [0]; // Select the New Game button
+    
+   
 
     const winningCombinations = [
         [0, 1, 2], // Top row
@@ -38,9 +40,10 @@ document.addEventListener('DOMContentLoaded', function() {
             square.textContent = ''; // Clear the text content of each square
             square.classList.remove('X', 'O'); // Remove the X and O classes
         });
-        statusDiv.textContent = ''; // Clear the status message
+        statusDiv.textContent = 'Move your mouse over a square and click to play an X or an O.'; // Clear the status message
         statusDiv.classList.remove('you-won'); // Remove the you-won class
-        currentPlayer = 'X'; // Reset the current player to X
+        currentPlayer = 'X'; // Reset the current player to 
+        
     }
 
     squares.forEach(function(square, index) {
