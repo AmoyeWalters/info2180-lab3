@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentPlayer = 'X';
     const gameState = Array(9).fill(null); // Initialize the game state array
     const statusDiv = document.getElementById('status');
+    const newGameButton = document.getElementById('new-game'); // Select the New Game button
 
     const winningCombinations = [
         [0, 1, 2], // Top row
@@ -31,6 +32,17 @@ document.addEventListener('DOMContentLoaded', function() {
         statusDiv.classList.add('you-won');
     }
 
+    function resetGame() {
+        gameState.fill(null); // Reset the game state array
+        squares.forEach(function(square) {
+            square.textContent = ''; // Clear the text content of each square
+            square.classList.remove('X', 'O'); // Remove the X and O classes
+        });
+        statusDiv.textContent = ''; // Clear the status message
+        statusDiv.classList.remove('you-won'); // Remove the you-won class
+        currentPlayer = 'X'; // Reset the current player to X
+    }
+
     squares.forEach(function(square, index) {
         // Exercise 1: Add the 'square' class to each div
         square.classList.add('square');
@@ -41,9 +53,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 square.textContent = currentPlayer;
                 square.classList.add(currentPlayer);
                 gameState[index] = currentPlayer; // Update the game state array
-                const winner = checkWinner();
+                const winner = checkWinner(); // Check for a winner
                 if (winner) {
-                    updateStatus(winner);
+                    updateStatus(winner); // Update the status if there's a winner
                 } else {
                     currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
                 }
@@ -61,4 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
             square.classList.remove('hover');
         });
     });
+
+    // Exercise 5: Add event listener to the New Game button
+    newGameButton.addEventListener('click', resetGame);
 });
